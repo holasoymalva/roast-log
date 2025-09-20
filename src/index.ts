@@ -10,6 +10,9 @@ export * from '../types';
 // Export configuration manager
 export { ConfigurationManager } from './config';
 
+// Export Anthropic client
+export { AnthropicClient } from './anthropic';
+
 // Main ConsoleRoast class will be implemented in later tasks
 export class ConsoleRoast {
   // Implementation will be added in task 9
