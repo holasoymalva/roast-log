@@ -1,5 +1,5 @@
 /**
- * Console.roast - A Node.js library that enhances console.log with humorous comments
+ * roast-log - A Node.js library that enhances console.log with humorous comments
  * 
  * This is the main entry point for the library.
  */

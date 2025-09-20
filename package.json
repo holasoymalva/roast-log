@@ -1,5 +1,5 @@
 {
-  "name": "console.roast",
+  "name": "roast-log",
   "version": "1.0.0",
   "description": "A Node.js library that enhances console.log with humorous comments and reactions",
   "main": "dist/index.js",
@@ -11,7 +11,7 @@
     "dev": "ts-node src/index.ts",
     "clean": "rm -rf dist"
   },
-  "keywords": ["console", "logging", "humor", "debugging", "development"],
+  "keywords": ["console", "logging", "humor", "debugging", "development", "roast-log"],
   "author": "",
   "license": "MIT",
   "dependencies": {

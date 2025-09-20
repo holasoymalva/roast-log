@@ -1,5 +1,5 @@
 /**
- * Core configuration interface for Console.roast
+ * Core configuration interface for roast-log
  */
 export interface ConsoleRoastConfig {
   /** Anthropic API key for dynamic humor generation */

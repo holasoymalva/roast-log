@@ -1,5 +1,5 @@
 /**
- * Basic setup test to verify the project structure is working
+ * Basic setup test to verify the roast-log project structure is working
  */
 
 import { ConsoleRoastConfig } from '../types';

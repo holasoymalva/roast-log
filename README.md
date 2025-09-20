@@ -1,17 +1,17 @@
-# Console.roast 🔥
+# roast-log 🔥
 
 A Node.js library that enhances console.log with humorous comments and reactions, making debugging sessions more entertaining.
 
 ## Installation
 
 ```bash
-npm install console.roast
+npm install roast-log
 ```
 
 ## Quick Start
 
 ```typescript
-import ConsoleRoast from 'console.roast';
+import ConsoleRoast from 'roast-log';
 
 // Initialize with default settings
 const roast = new ConsoleRoast();
