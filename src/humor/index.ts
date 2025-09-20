@@ -1,0 +1,1 @@
+export { HumorDatabase } from './HumorDatabase';
