@@ -7,6 +7,9 @@
 // Export all types for consumers
 export * from '../types';
 
+// Export configuration manager
+export { ConfigurationManager } from './config';
+
 // Main ConsoleRoast class will be implemented in later tasks
 export class ConsoleRoast {
   // Implementation will be added in task 9
