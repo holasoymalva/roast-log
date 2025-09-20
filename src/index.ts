@@ -8,7 +8,7 @@
 export * from '../types';
 
 // Export configuration manager
-export { ConfigurationManager } from './config';
+export { ConfigurationManager, EnvConfig } from './config';
 
 // Export Anthropic client
 export { AnthropicClient } from './anthropic';
