@@ -184,6 +184,8 @@ export interface ICacheManager {
   clear(): void;
   /** Get cache statistics */
   getStats(): { size: number; hitRate: number };
+  /** Update cache size limit */
+  setMaxSize(newMaxSize: number): void;
 }
 
 /**
@@ -196,6 +198,8 @@ export interface IAnthropicClient {
   isAvailable(): boolean;
   /** Get current rate limit status */
   getRateLimitStatus(): { remaining: number; resetTime: Date };
+  /** Update configuration */
+  updateConfig(config: ConsoleRoastConfig): void;
 }
 
 /**
