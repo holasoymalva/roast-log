@@ -26,6 +26,24 @@ class MockHumorEngine implements IHumorEngine {
   formatResponse(humor: string, original: string): string {
     return `${original} • ${humor}`;
   }
+
+  updateConfig(config: ConsoleRoastConfig): void {
+    // Mock implementation
+  }
+
+  getMetrics(): {
+    cacheStats: { size: number; hitRate: number };
+    apiStatus: { available: boolean; rateLimitRemaining: number };
+  } {
+    return {
+      cacheStats: { size: 0, hitRate: 0 },
+      apiStatus: { available: false, rateLimitRemaining: 0 }
+    };
+  }
+
+  clearCache(): void {
+    // Mock implementation
+  }
 }
 
 class MockConfigurationManager implements IConfigurationManager {
@@ -48,6 +66,10 @@ class MockConfigurationManager implements IConfigurationManager {
 
   validateConfig(config: Partial<ConsoleRoastConfig>): boolean {
     return true;
+  }
+
+  hasApiKey(): boolean {
+    return !!this.config.apiKey;
   }
 }
 

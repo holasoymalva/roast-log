@@ -134,6 +134,12 @@ export interface ILoggerInterceptor {
   restore(): void;
   /** Enhanced logging method */
   enhancedLog(message: any, ...args: any[]): void;
+  /** Get current interception status */
+  isCurrentlyIntercepted(): boolean;
+  /** Get log statistics */
+  getStats(): { totalLogs: number; isIntercepted: boolean };
+  /** Reset log count */
+  resetStats(): void;
 }
 
 /**
@@ -146,6 +152,8 @@ export interface IConfigurationManager {
   updateConfig(config: Partial<ConsoleRoastConfig>): void;
   /** Validate configuration */
   validateConfig(config: Partial<ConsoleRoastConfig>): boolean;
+  /** Check if API key is configured */
+  hasApiKey(): boolean;
 }
 
 /**
@@ -168,6 +176,15 @@ export interface IHumorEngine {
   selectHumorType(analysis: ContentAnalysis): string;
   /** Format response combining original message with humor */
   formatResponse(humor: string, original: string): string;
+  /** Update configuration */
+  updateConfig(config: ConsoleRoastConfig): void;
+  /** Get performance metrics */
+  getMetrics(): {
+    cacheStats: { size: number; hitRate: number };
+    apiStatus: { available: boolean; rateLimitRemaining: number };
+  };
+  /** Clear cache */
+  clearCache(): void;
 }
 
 /**
@@ -186,6 +203,15 @@ export interface ICacheManager {
   getStats(): { size: number; hitRate: number };
   /** Update cache size limit */
   setMaxSize(newMaxSize: number): void;
+  /** Get detailed cache metrics */
+  getDetailedStats(): {
+    size: number;
+    maxSize: number;
+    hits: number;
+    misses: number;
+    hitRate: number;
+    memoryUsage: number;
+  };
 }
 
 /**

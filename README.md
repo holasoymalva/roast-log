@@ -29,67 +29,97 @@ npm run test-config
 
 ## Quick Start
 
+### Simple Usage (Default Configuration)
+
 ```typescript
-// Cargar variables de entorno
-import * as dotenv from 'dotenv';
-dotenv.config();
+import ConsoleRoast from 'roast-log';
 
-import { AnthropicClient, ConfigurationManager } from 'roast-log';
+// One-liner setup with defaults
+const roast = new ConsoleRoast();
 
-// Configuración
-const config = {
-  apiKey: process.env.ANTHROPIC_API_KEY,
-  humorLevel: 'medium' as const,
-  frequency: 50,
-  enabled: true,
-  cacheSize: 100,
-  apiTimeout: 5000,
-  fallbackToLocal: true
-};
+// Now all console.log calls will be enhanced with humor
+console.log('Hello, world!');
+console.log('This is working!');
+console.log('Error: Something went wrong');
 
-// Crear cliente
-const client = new AnthropicClient(config);
-
-// Verificar disponibilidad
-if (client.isAvailable()) {
-  console.log('✅ Cliente configurado correctamente');
-} else {
-  console.log('❌ Verifica tu API key');
-}
+// Cleanup when done
+roast.cleanup();
 ```
 
-## Ejemplo Completo
+### Advanced Configuration
 
 ```typescript
-import { AnthropicClient, ContentAnalysis } from 'roast-log';
+import ConsoleRoast from 'roast-log';
 
-const client = new AnthropicClient({
-  apiKey: process.env.ANTHROPIC_API_KEY!,
-  humorLevel: 'medium',
-  frequency: 50,
+// Custom configuration
+const roast = new ConsoleRoast({
+  apiKey: process.env.ANTHROPIC_API_KEY, // Optional: for AI-generated humor
+  humorLevel: 'savage', // 'mild', 'medium', or 'savage'
+  frequency: 75, // Apply humor to 75% of logs
   enabled: true,
-  cacheSize: 100,
-  apiTimeout: 5000,
+  cacheSize: 50,
   fallbackToLocal: true
 });
 
-// Análisis de contenido simulado
-const analysis: ContentAnalysis = {
-  dataTypes: ['string'],
-  complexity: 'simple',
-  isError: false,
-  sentiment: 'neutral',
-  patterns: [],
-  sanitizedContent: 'Hello world!'
-};
+console.log('This will have savage humor!');
 
-// Generar humor
-const result = await client.generateHumor('console.log("Hello world!")', analysis);
+// Change configuration on the fly
+roast.configure({ humorLevel: 'mild' });
+console.log('This will have mild humor');
 
-if (result.success) {
-  console.log('Humor generado:', result.humor);
-} else {
-  console.log('Error:', result.error);
+// Disable temporarily
+roast.disable();
+console.log('This is normal logging');
+
+// Re-enable
+roast.enable();
+console.log('Humor is back!');
+
+// Get status and metrics
+console.log('Status:', roast.getStatus());
+console.log('Metrics:', roast.getMetrics());
+
+// Cleanup
+roast.cleanup();
+```
+
+## API Reference
+
+### ConsoleRoast Class
+
+```typescript
+class ConsoleRoast {
+  constructor(config?: Partial<ConsoleRoastConfig>)
+  
+  // Control methods
+  enable(): void
+  disable(): void
+  configure(config: Partial<ConsoleRoastConfig>): void
+  cleanup(): void
+  
+  // Information methods
+  getConfig(): ConsoleRoastConfig
+  isCurrentlyEnabled(): boolean
+  getMetrics(): PerformanceMetrics
+  getStatus(): StatusInfo
+  
+  // Cache management
+  clearCache(): void
+  resetStats(): void
+}
+```
+
+### Configuration Options
+
+```typescript
+interface ConsoleRoastConfig {
+  apiKey?: string;                    // Anthropic API key (optional)
+  humorLevel: 'mild' | 'medium' | 'savage';  // Humor intensity
+  frequency: number;                  // Percentage of logs to enhance (0-100)
+  enabled: boolean;                   // Whether library is active
+  cacheSize: number;                  // Maximum cached responses
+  apiTimeout: number;                 // API request timeout (ms)
+  fallbackToLocal: boolean;          // Use local humor when API fails
 }
 ```
 

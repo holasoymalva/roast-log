@@ -1,1 +1,1 @@
-export { LoggerInterceptor } from './LoggerInterceptor.js';
+export { LoggerInterceptor } from './LoggerInterceptor';
